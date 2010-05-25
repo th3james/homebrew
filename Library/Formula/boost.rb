@@ -84,7 +84,8 @@ class Boost <Formula
     # maybe should link to ICU in keg location rather than prefix unless it is possible
     # for the boost formula to force `brew link icu4c'?
     # -sICU_PATH='/usr/local/Cellar/icu4c/4.3.1/lib/'
-    system "./bjam -j#{Hardware.processor_count} --layout=tagged --prefix='#{prefix}' --libdir='#{lib}' --user-config=user-config.jam threading=multi -sHAVE_ICU=1 -sICU_PATH='#{prefix}' install"
+    icu = Formula.factory "icu4c"
+    system "./bjam -sHAVE_ICU=1 -sICU_PATH='#{icu.prefix}' -j#{Hardware.processor_count} --layout=tagged --prefix='#{prefix}' --libdir='#{lib}' --user-config=user-config.jam threading=multi install"
   end
 end
 
