@@ -4,13 +4,15 @@ class Boost <Formula
   homepage 'http://www.boost.org'
   url 'http://downloads.sourceforge.net/project/boost/boost/1.42.0/boost_1_42_0.tar.bz2'
   md5 '7bf3b4eb841b62ffb0ade2b82218ebe6'
+  
+  depends_on 'icu4c'
 
   def patches
     { :p0 => DATA }
   end
 
   def install
-    # Use GCC 4.2 because the standard llvm-gcc causes errors with dropped arugments
+    # Use GCC 4.2 because the standard llvm-gcc causes errors with dropped arguments
     # to functions when linking with the boost library
     ENV.gcc_4_2
 
@@ -79,7 +81,7 @@ class Boost <Formula
 
     # we specify libdir too because the script is apparently broken
     system "./bootstrap.sh --prefix='#{prefix}' --libdir='#{lib}'"
-    system "./bjam -j#{Hardware.processor_count} --layout=tagged --prefix='#{prefix}' --libdir='#{lib}' --user-config=user-config.jam threading=multi install"
+    system "./bjam -j#{Hardware.processor_count} --layout=tagged --prefix='#{prefix}' --libdir='#{lib}' --user-config=user-config.jam threading=multi -sHAVE_ICU=1 -sICU_PATH='#{prefix}' install"
   end
 end
 
