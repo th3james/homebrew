@@ -24,6 +24,8 @@ class Cairomm <Formula
   end
 end
 
+# patch for universal compilation from:
+# http://trac.macports.org/browser/trunk/dports/graphics/cairomm/files/patch-quartz-lp64.diff
 __END__
 diff -urN cairomm/quartz_font.cc cairomm-1.8.2/cairomm/quartz_font.cc
 --- cairomm/quartz_font.cc	2008-12-20 18:37:46.000000000 +0100
