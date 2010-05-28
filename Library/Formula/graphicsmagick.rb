@@ -16,7 +16,7 @@ class Graphicsmagick < Imagemagick
     ENV.libpng
     ENV.gcc_4_2
 
-    fix_configure
+    #fix_configure
 
     system "./configure", *configure_args
     system "make install"
