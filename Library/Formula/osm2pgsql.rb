@@ -6,7 +6,9 @@ class Osm2pgsql <Formula
   homepage 'http://wiki.openstreetmap.org/wiki/Osm2pgsql'
 
   def install
-    system "make"
+    system "./autogen.sh"
+    system "./configure"
+    system "make", "-j1"
     bin.install "osm2pgsql"
   end
 end
