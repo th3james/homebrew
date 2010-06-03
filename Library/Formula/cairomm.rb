@@ -10,7 +10,6 @@ class Cairomm <Formula
   end
   
   depends_on 'pkg-config'
-  depends_on 'cairo'
   depends_on 'libsigc++'
 
   def install
