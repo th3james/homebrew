@@ -1,5 +1,4 @@
 require 'formula'
-require 'date'
 
 class Mapnik2 <Formula
   head 'http://svn.mapnik.org/trunk/', :using => :svn
@@ -28,7 +27,7 @@ class Mapnik2 <Formula
   end
 
   if ARGV.include? '--with-cairo'
-    depends_on 'cairo'
+    depends_on 'cairo' if MACOS_VERSION == 10.5
     depends_on 'cairomm'
     depends_on 'pkg-config'
   end   
