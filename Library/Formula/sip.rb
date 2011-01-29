@@ -19,10 +19,17 @@ class Sip <Formula
 
   def install
     system "python", "build.py", "prepare"
-    system "python", "configure.py",
-                              "--destdir=#{lib}/python",
-                              "--bindir=#{bin}",
-                              "--incdir=#{include}"
+    
+    args = ["--destdir=#{lib}/python",
+      "--bindir=#{bin}",
+      "--incdir=#{include}"]
+    
+    # build universial binaries on 10.6
+    if ARGV.include? '--universal'
+      args << "-n" << "--arch=x86_64" << "--sdk=MacOSX10.6.sdk"
+    end
+    
+    system "python", "configure.py", *args
     system "make install"
   end
 
