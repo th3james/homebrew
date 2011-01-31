@@ -25,9 +25,8 @@ class Qgis <Formula
     geos = Formula.factory 'geos'
     gdal = Formula.factory 'gdal'
     python = Formula.factory 'python'
-    gsl = Formula.factory 'gsl'
     
-    system "cmake -DCMAKE_INSTALL_PREFIX=~/Applications -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=MinSizeRel -DWITH_INTERNAL_SPATIALITE=TRUE -DGEOS_INCLUDE_DIR=#{geos.include} -DGEOS_LIBRARY=#{geos.lib}/libgeos_c.dylib -DGDAL_INCLUDE_DIR=#{gdal.include} -DGDAL_LIBRARY=#{gdal.lib}/libgdal.dylib -DGSL_INCLUDE_DIR=#{gdal.include} -DGSL_LIBRARIES=#{gsl.lib} -DPYTHON_EXECUTABLE=#{python.bin}/python"
+    system "cmake -DCMAKE_INSTALL_PREFIX=~/Applications -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=MinSizeRel -DWITH_INTERNAL_SPATIALITE=TRUE -DGEOS_INCLUDE_DIR=#{geos.include} -DGEOS_LIBRARY=#{geos.lib}/libgeos_c.dylib -DGDAL_INCLUDE_DIR=#{gdal.include} -DGDAL_LIBRARY=#{gdal.lib}/libgdal.dylib -DPYTHON_EXECUTABLE=#{python.bin}/python"
     system "make install"
   end
   
