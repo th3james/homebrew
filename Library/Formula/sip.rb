@@ -14,8 +14,6 @@ class Sip <Formula
 
   def install
 
-    system "python", "build.py", "prepare"
-    
     args = ["--destdir=#{lib}/python",
       "--bindir=#{bin}",
       "--incdir=#{include}"]
@@ -27,6 +25,7 @@ class Sip <Formula
     
     system "python", "configure.py", *args
     system "make install"
+  end
 
   def caveats; <<-EOS.undent
     This formula won't function until you amend your PYTHONPATH like so:
