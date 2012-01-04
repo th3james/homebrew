@@ -19,14 +19,21 @@ class Qgis <Formula
   depends_on 'pyqt'
   depends_on 'sip'
   depends_on 'qwt'
-  # not yet in homebrew available: depends_on 'pyqwt'
+  depends_on 'pyqwt'
 
   def install
     geos = Formula.factory 'geos'
     gdal = Formula.factory 'gdal'
     python = Formula.factory 'python'
-    
-    system "cmake -DCMAKE_INSTALL_PREFIX=~/Applications -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=MinSizeRel -DWITH_INTERNAL_SPATIALITE=TRUE -DGEOS_INCLUDE_DIR=#{geos.include} -DGEOS_LIBRARY=#{geos.lib}/libgeos_c.dylib -DGDAL_INCLUDE_DIR=#{gdal.include} -DGDAL_LIBRARY=#{gdal.lib}/libgdal.dylib -DPYTHON_EXECUTABLE=#{python.bin}/python"
+    qwt = Formula.factory 'qwt'
+
+    system "cmake -DCMAKE_INSTALL_PREFIX=~/Applications -DCMAKE_BUILD_TYPE=Release -DCMAKE_BUILD_TYPE=MinSizeRel 
+     -DWITH_INTERNAL_SPATIALITE=TRUE
+     -DGEOS_INCLUDE_DIR=#{geos.include} -DGEOS_LIBRARY=#{geos.lib}/libgeos_c.dylib
+     -DGDAL_INCLUDE_DIR=#{gdal.include} -DGDAL_LIBRARY=#{gdal.lib}/libgdal.dylib
+     -DGDAL_INCLUDE_DIR=#{gdal.include} -DGDAL_LIBRARY=#{gdal.lib}/libgdal.dylib
+     -DQWT_INCLUDE_DIR=#{qwt.include} -DQWT_LIBRARY=#{qwt.lib}/libqwt.dylib 
+     -DPYTHON_EXECUTABLE=#{python.bin}/python"
     system "make install"
   end
   
